@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}Employees{% endblock %}
+
+
+{% block content %}
+
+{% with messages = get_flashed_messages(with_categories=true) %} 
+
+    {%if messages%}
+        <ui>
+            {%for category, message in messages %}
+                <li class="{{category}}"> {{message}}</li>
+
+            {%endfor%}
+        </ui>
+
+
+    {%endif%}
+{%endwith%}
+
+<h1>Company List</h1>
+
+<!-- <ul>
+        {% for company in companies %}
+            <li>{{ company.c_name }} - {{ company.c_address }}</li>
+        {% endfor %}
+    </ul> -->
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for company in companies %}
+        <tr>
+            <td>{{ company.id }}</td>
+            <td>{{ company.c_name }}</td>
+            <td>{{ company.c_address }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h1>Employee List</h1>
+<!-- <ul>
+        {% for employee in employees %}
+            <li>{{ employee.e_name }} - {{ employee.e_email }}- {{ employee.company.c_name}}</li>
+        {% endfor %}
+    </ul> -->
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Company</th>
+            <th>Company id</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in employees %}
+        <tr>
+            <td>{{ employee.e_name }}</td>
+            <td>{{ employee.e_email }}</td>
+            <td>{{ employee.company.c_name }}</td>
+            <td>{{ employee.company.id }}</td>
+            <td>
+                <a href="/delete/{{employee.id}}">delete</a><br>
+                <a href="/update/{{employee.id}}">update</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="/create_employee">Create New Employee</a>
+
+
+{% endblock %}

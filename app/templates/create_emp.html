@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Employees{% endblock %}
+
+
+{% block content %}
+
+<h1>Create Employee</h1>
+
+<form action="/create_employee" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br>
+    
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br>
+
+    <label for="company">Company:</label>
+    <select id="company" name="company">
+        {% for company in companies %}
+        <option value="{{ company.c_name }}">{{ company.c_name }}</option>
+        {% endfor %}
+    </select><br>
+
+    <input type="submit" value="Create">
+</form>
+{% endblock %}

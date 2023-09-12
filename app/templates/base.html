@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{% block title %}My App{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <div class = "main">
+            <h1>My App</h1>
+        </div>
+        
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('main.index') }}">Employees</a></li>
+            <li><a href="{{ url_for('main.index') }}">Companies</a></li>
+           
+            <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+            <li><a href="{{ url_for('auth.logout') }}">logout</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        {% block content %}
+        
+
+        {% endblock %}
+    </main>
+
+</body>
+
+</html>
